@@ -15,6 +15,7 @@ import { capabilities } from '@config/config';
 import { DevicesSection } from '@sections/devices-section';
 import { DeviceSection } from '@sections/device-section';
 import { CapabilitySection } from '@sections/capability-section';
+import { InventorySection } from '@sections/inventory-section';
 import { UserContext } from '@components/user-context';
 
 const log = getLogger('DashBoard');
@@ -27,8 +28,8 @@ function DashBoard() {
     return <div>Loading...</div>;
   }
   return (
-    <div className='grid min-h-screen max-h-screen grid-rows-[3.5rem_1fr]
-      md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] overflow-hidden'>
+    <div className='grid min-h-screen grid-rows-[3.5rem_1fr]
+      md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]'>
       <Sheet>
         <SheetTrigger asChild>
           <Button
@@ -59,8 +60,12 @@ function DashBoard() {
             element={<DevicesSection />} />
           <Route key='device-section' path='/devices/:deviceId'
             element={<DeviceSection />} />
+          <Route key='inventory-section' path='/inventory'
+            element={<InventorySection />} />
+          <Route key='inventory-device-section' path='/inventory/:deviceId'
+            element={<InventorySection />} />
           {_.map(
-            _.filter(capabilities, (capability: Capability) => capability.route),
+            _.filter(capabilities, (capability: Capability) => capability.route && capability.id !== 'inventory-management'),
             (capability: Capability, capabilityId: string) => (
               <Route
                 key={capabilityId}
@@ -74,7 +79,7 @@ function DashBoard() {
                   />))
           }
           {_.map(
-            _.filter(capabilities, (capability: Capability) => capability.route),
+            _.filter(capabilities, (capability: Capability) => capability.route && capability.id !== 'inventory-management'),
             (capability: Capability, capabilityId: string) => (
               <Route
                 key={capabilityId + '_device'}

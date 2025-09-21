@@ -1,5 +1,5 @@
 import { HeartPulse, Joystick, SlidersHorizontal, Terminal, Video, MapPinned,
-    Cctv }from 'lucide-react';
+    Cctv, Package }from 'lucide-react';
 
 import { Capability } from '@models/device';
 
@@ -106,6 +106,16 @@ export const capabilities: Capability[] = {
       trackId: 'bKtBkIYj',
       start: "1748973000000",
       end: "1748973600000",
+    }
+  },
+  'inventory-management': {
+    id: 'inventory-management',
+    displayName: 'Inventory Management',
+    route: '/inventory',
+    icon: Package,
+    props: {
+      // Custom inventory management properties can be added here
+      // For example: warehouse zones, item categories, etc.
     }
   }
 }
