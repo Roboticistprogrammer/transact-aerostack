@@ -16,8 +16,8 @@ import { getLogger} from '@transitive-sdk/utils-web';
 const log = getLogger('DeviceSelector');
 log.setLevel('debug');
 
-export default function DeviceSelector({ deviceId, onChange, capability: capabilityId }:
-    { deviceId: string, onChange: (value: string) => void; capabilityId: string }) {
+export default function DeviceSelector({ deviceId, onChange, capabilityId }:
+    { deviceId?: string, onChange?: (value: string) => void; capabilityId?: string }) {
 
   const { fleet } = useContext(FleetContext);
 

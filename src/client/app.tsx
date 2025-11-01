@@ -23,7 +23,7 @@ function App() {
           <Routes>
             <Route path='/login' element={<Login/>} />
             <Route path='/dashboard/*' element={<DashBoard/>} />
-            <Route path='*' element={<Navigate to='/dashboard/devices' />} />
+            <Route path='*' element={<Navigate to='/dashboard/dashboard' />} />
           </Routes>
         </UserContextProvider>
       </ThemeProvider>

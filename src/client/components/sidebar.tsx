@@ -13,7 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@components/ui/dropdown-menu';
-import { Bot, CircleUser } from 'lucide-react';
+import { Bot, CircleUser, LayoutDashboard, Package, ShoppingCart, MapPin, BarChart3 } from 'lucide-react';
 import { UserContext } from '@components/user-context';
 import { getLogger} from '@transitive-sdk/utils-web';
 import { Capability } from '@models/device';
@@ -50,10 +50,15 @@ export function Sidebar(){
         </div>
       </div>
       <ScrollArea className='grow grid items-start px-2 text-sm font-medium lg:px-4'>
+        <PageLink section={{route: '/dashboard', icon: LayoutDashboard, displayName: 'Dashboard'}} key='dashboard-link' />
         <PageLink section={{route: '/devices', icon: Bot, displayName: 'Devices'}} key='devices-link' />
+        <PageLink section={{route: '/inventory', icon: Package, displayName: 'Inventory'}} key='inventory-link' />
+        <PageLink section={{route: '/orders', icon: ShoppingCart, displayName: 'Orders'}} key='orders-link' />
+        <PageLink section={{route: '/warehouse', icon: MapPin, displayName: 'Warehouse'}} key='warehouse-link' />
+        <PageLink section={{route: '/analytics', icon: BarChart3, displayName: 'Analytics'}} key='analytics-link' />
         {
           _.map(
-            _.filter(capabilities, (capability: Capability) => capability.route),
+            _.filter(capabilities, (capability: Capability) => capability.route && capability.id !== 'inventory-management'),
             (capability: Capability, capabilityId: string) =>
               <PageLink section={capability} key={capabilityId} />
             )

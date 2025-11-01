@@ -16,6 +16,10 @@ import { DevicesSection } from '@sections/devices-section';
 import { DeviceSection } from '@sections/device-section';
 import { CapabilitySection } from '@sections/capability-section';
 import { InventorySection } from '@sections/inventory-section';
+import { DashboardSection } from '@sections/dashboard-section';
+import { OrdersSection } from '@sections/orders-section';
+import { WarehouseSection } from '@sections/warehouse-section';
+import { AnalyticsSection } from '@sections/analytics-section';
 import { UserContext } from '@components/user-context';
 
 const log = getLogger('DashBoard');
@@ -55,7 +59,9 @@ function DashBoard() {
           _robot-agent topics but not publish to them. We use this to get the list
           of devices. */}
         <Routes key='routes'>
-          <Route path='*' element={<Navigate to='devices' />} />
+          <Route path='*' element={<Navigate to='dashboard' />} />
+          <Route key='dashboard-section' path='/dashboard'
+            element={<DashboardSection />} />
           <Route key='devices-section' path='/devices'
             element={<DevicesSection />} />
           <Route key='device-section' path='/devices/:deviceId'
@@ -64,6 +70,18 @@ function DashBoard() {
             element={<InventorySection />} />
           <Route key='inventory-device-section' path='/inventory/:deviceId'
             element={<InventorySection />} />
+          <Route key='orders-section' path='/orders'
+            element={<OrdersSection />} />
+          <Route key='orders-device-section' path='/orders/:deviceId'
+            element={<OrdersSection />} />
+          <Route key='warehouse-section' path='/warehouse'
+            element={<WarehouseSection />} />
+          <Route key='warehouse-device-section' path='/warehouse/:deviceId'
+            element={<WarehouseSection />} />
+          <Route key='analytics-section' path='/analytics'
+            element={<AnalyticsSection />} />
+          <Route key='analytics-device-section' path='/analytics/:deviceId'
+            element={<AnalyticsSection />} />
           {_.map(
             _.filter(capabilities, (capability: Capability) => capability.route && capability.id !== 'inventory-management'),
             (capability: Capability, capabilityId: string) => (
